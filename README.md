@@ -2,8 +2,8 @@
 
 This repository contains the implementation of **CAPE (Connectivity-Aware Path Enforcement Loss)**, a novel loss function designed to improve the connectivity of curvilinear structures in biomedical image segmentation, such as neuronal processes and blood vessels. The method leverages Dijkstra's algorithm to enforce topological correctness by comparing shortest paths between ground truth and predicted segmentations, as described in the paper.
 
-- Project Page
-- Paper
+ * [Project Page](https://neuravisionlab.github.io/CAPE/)
+ * [Paper](https://arxiv.org/abs/2504.00753)
 
 ## Overview
 
