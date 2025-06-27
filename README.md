@@ -19,17 +19,9 @@ CAPE addresses the challenge of preserving topological connectivity in curviline
 
 ## Installation
 
-To use this code, you need to have Python 3.8+ and the following dependencies installed. We recommend setting up a virtual environment.
+To use this code, you need to have the following dependencies installed.
 
 ```bash
-# Clone the repository
-git clone https://github.com/neuravisionlab/CAPE.git
-cd CAPE
-
-# Create and activate a virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
 # Install dependencies
 pip install torch numpy scikit-image opencv-python scipy
 ```
