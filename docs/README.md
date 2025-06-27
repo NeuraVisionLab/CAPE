@@ -1,1 +1,1 @@
-this is the website
+This is going to be the project website for CAPE.
