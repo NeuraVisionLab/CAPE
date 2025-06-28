@@ -25,7 +25,7 @@ To use this code, you need to have the following dependencies installed.
 git clone https://github.com/neuravisionlab/CAPE.git
 
 # Install dependencies
-pip install torch numpy scikit-image opencv-python scipy
+pip install torch numpy scikit-image opencv-python scipy networkx
 ```
 
 **Note**: The code requires custom utility functions `graph_from_skeleton_2D` and `graph_from_skeleton_3D`, which are available in the `utils` module. Ensure these are included in your project directory.
