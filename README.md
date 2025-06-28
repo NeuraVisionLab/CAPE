@@ -12,7 +12,7 @@ CAPE addresses the challenge of preserving topological connectivity in curviline
 ## Features
 
 - **Connectivity-Aware Loss**: Optimizes topological correctness using a differentiable loss based on the Average Path Length Similarity (APLS) metric.
-- **2D and 3D Support**: Handles both 2D and 3D biomedical image segmentation tasks.
+- **2D and 3D Support**: Handles both 2D and 3D tasks.
 - **Dijkstra-Based Path Computation**: Uses Dijkstra's algorithm to compute shortest paths, with a masking strategy to handle noisy centerlines and loops.
 - **Flexible Window-Based Processing**: Processes large images/volumes by dividing them into manageable patches.
 
