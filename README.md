@@ -23,7 +23,6 @@ To use this code, you need to have the following dependencies installed.
 ```bash
 # Clone the repository
 git clone https://github.com/neuravisionlab/CAPE.git
-cd CAPE
 
 # Install dependencies
 pip install torch numpy scikit-image opencv-python scipy
