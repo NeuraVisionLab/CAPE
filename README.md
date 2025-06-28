@@ -34,18 +34,9 @@ pip install torch numpy scikit-image opencv-python scipy networkx
 
 The CAPE loss has been evaluated on the following datasets:
 
-- **CREMI**: 2D dataset with 83 training and 42 validation samples of size 1250x1250, containing neurons from *Drosophila melanogaster* brain.
-- **DRIVE**: 2D dataset with 13 training and 7 validation samples of size 584x565, containing retinal blood vessels.
-- **Brain**: 3D dataset with 14 light microscopy scans of the mouse brain, each of size 250x250x200 (10 for training, 4 for validation).
-
-## Evaluation Metrics
-
-The implementation supports evaluation using:
-
-- **Pixel-wise Metrics**: CCQ (Correctness, Completeness, Quality) and Dice score.
-- **Topology-aware Metrics**: APLS (Average Path Length Similarity) and TLTS (Too-Long-Too-Short).
-
-See the paper for detailed results comparing CAPE against baselines like MSE, Perceptual loss, clDice, and InvMALIS.
+- [CREMI](https://cremi.org/data/)
+- [DRIVE](https://drive.grand-challenge.org)
+- [Brain] 
 
 ## Citing
 
