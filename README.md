@@ -36,7 +36,7 @@ The CAPE loss has been evaluated on the following datasets:
 
 - [CREMI](https://cremi.org/data/)
 - [DRIVE](https://drive.grand-challenge.org)
-- [Brain] 
+- Brain
 
 ## Citing
 
