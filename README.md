@@ -44,19 +44,6 @@ The implementation supports evaluation using:
 
 See the paper for detailed results comparing CAPE against baselines like MSE, Perceptual loss, clDice, and InvMALIS.
 
-## Training Details
-
-- **Architecture**: 2D and 3D U-Net with three down-samplings, two convolutional layers per level, max-pooling (encoder), and bilinear upsampling (decoder).
-- **Optimizer**: Adam with a learning rate of 1e-3 and weight decay of 1e-3.
-- **Epochs**: 10k for 2D models, 50k for 3D models.
-- **Loss Combination**: CAPE loss is combined with MSE loss using a hyperparameter `α` (e.g., `L_TOTAL = L_MSE + α * L_CAPE`).
-
-## Results
-
-CAPE achieves state-of-the-art performance in topology-aware metrics (APLS, TLTS) while maintaining competitive pixel-wise performance (CCQ, Dice). Qualitative results show significant improvements in connectivity for curvilinear structures.
-
-For detailed quantitative results, refer to Table 1 in the paper.
-
 ## Citing
 
 If you find our work useful, please consider citing:
