@@ -156,10 +156,18 @@ body {
   border-radius: 5px;
 }
 
+/* remove table borders completely */
 table.no-borders,
 table.no-borders th,
 table.no-borders td {
   border: none !important;
+}
+
+/* center text vertically and horizontally inside cells */
+table.center-table-cells th,
+table.center-table-cells td {
+  vertical-align: middle !important;
+  text-align: center !important;
 }
 
 
