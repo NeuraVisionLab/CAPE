@@ -219,7 +219,7 @@
             <img src="./static/images/FIG_NEW.png" alt="CAPE visual effect example" style="width:80%;">
           </figure>
 
-          <p>
+          <p class="grey-box">
             After extracting the ground truth graph, an iterative process selects pairs of vertices and computes their shortest path. The corresponding path is then masked with dilation and projected to the pixel domain, and the shortest path algorithm is reapplied to obtain L<sub>CAPE</sub>.
           </p>
         </div>
@@ -234,7 +234,7 @@
           <figure class="has-text-centered">
             <img src="./static/images/FIG_MASK.png" alt="CAPE connectivity result" style="width:80%;">
           </figure>
-          <p>
+          <p class="grey-box">
             Left: Ground truth graph with selected vertices and the shortest path computed via Dijkstra’s algorithm. Middle: Projected vertices on the predicted distance map and the corresponding Dijkstra path computed without masking; due to a loop, the algorithm bypasses the disconnection. Right: With a mask applied around the ground truth path, Dijkstra is forced to capture the disconnection by preventing an alternate loop path.
           </p>
         </div>
@@ -320,7 +320,7 @@
         </tbody>
       </table>
     </div>
-    <div class="content has-text-centered has-text-justified">
+    <div class="content has-text-centered has-text-justified grey-box">
       <p>
         Qualitative comparison of the test results in 2D and 3D datasets. The arrows highlight regions that remain disconnected in alternative methods but are successfully connected using CAPE. The connectivity improves significantly when our approach is used.
       </p>
