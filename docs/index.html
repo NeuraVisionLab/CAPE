@@ -174,11 +174,17 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline style="max-width: 800px; width: 100%; height: auto;">
-        <source src="./static/videos/output_video.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
+      <figure class="has-text-centered">
+        <video id="teaser"
+               autoplay
+               muted
+               loop
+               playsinline
+               style="width: 50%; height: auto; ">   <!--border: 2px solid #ccc; border-radius: 8px; -->
+          <source src="./static/videos/output_video.mp4" type="video/mp4">
+        </video>
+      </figure>
+      <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
         <span class="dnerf">Cape</span> increases the connectivity of curvilinear structures. The video above illustrates the effectiveness of our approach in enhancing the connectivity in segmentation.
       </h2>
     </div>
@@ -207,6 +213,43 @@
 
     <div class="columns is-centered">
       <div class="column">
+        <div class="content" style="text-align: justify;">
+          <h2 class="title is-3 has-text-centered">Computation of L<sub>CAPE</sub></h2>
+          
+          <figure class="has-text-centered">
+            <img src="./static/images/FIG_NEW.png" alt="CAPE visual effect example" style="width:80%;">
+          </figure>
+
+          <p>
+            After extracting the ground truth graph, an iterative process selects pairs of vertices and computes their shortest path. The corresponding path is then masked with dilation and projected to the pixel domain, and the shortest path algorithm is reapplied to obtain L<sub>CAPE</sub>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content" style="text-align: justify;">
+          <h2 class="title is-3 has-text-centered">Masking Strategy</h2>
+          
+          <figure class="has-text-centered">
+            <img src="./static/images/FIG_MASK.png" alt="CAPE connectivity result" style="width:80%;">
+          </figure>
+          <p>
+            Left: Ground truth graph with selected vertices and the shortest path computed via Dijkstra’s algorithm. Middle: Projected vertices on the predicted distance map and the corresponding Dijkstra path computed without masking; due to a loop, the algorithm bypasses the disconnection. Right: With a mask applied around the ground truth path, Dijkstra is forced to capture the disconnection by preventing an alternate loop path.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column">
         <div class="content">
           <h2 class="title is-3">Visual Effects</h2>
           <p>
@@ -215,22 +258,20 @@
           <img src="./static/images/FIG_NEW.png" alt="CAPE visual effect example" style="width:100%;">
         </div>
       </div>
-    </div>
-
-    <div class="columns is-centered">
       <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Connectivity Enforcement</h2>
-          <p>
-            CAPE effectively preserves the connectivity of neuronal and vascular structures. The illustration below highlights improved segmentation compared to alternative methods.
-          </p>
-          <img src="./static/images/FIG_MASK.png" alt="CAPE connectivity result" style="width:100%;">
+        <h2 class="title is-3">Connectivity Enforcement</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              CAPE effectively preserves the connectivity of neuronal and vascular structures. The illustration below highlights improved segmentation compared to alternative methods.
+            </p>
+            <img src="./static/images/FIG_MASK.png" alt="CAPE connectivity result" style="width:100%;">
+          </div>
         </div>
       </div>
     </div>
-
   </div>
-</section>
+</section> -->
 
 <section class="section" id="results">
   <div class="container is-max-desktop">
@@ -241,7 +282,7 @@
       </p>
     </div>
     <div class="table-container">
-      <table class="table is-bordered is-striped is-narrow is-fullwidth">
+      <table class="table is-fullwidth has-text-centered no-borders center-table-cells">
         <thead>
           <tr>
             <th></th>
