@@ -16,7 +16,7 @@ The loss requires several parameters for configuration which are described below
 
 - **`window_size`**: Size of the window for processing image patches.
 - **`three_dimensional`**: CAPE works for both 2D and 3D. In order to work with 3D please set this parameter to be True. 
-- **`distance_threshold`**: The loss is designed to work with distance maps which are usually thresholded. This parameter indicates the value used to threshold the ground truth.
+- **`distance_threshold`**: The loss is designed to work with distance maps which are usually thresholded. This parameter indicates the value used to threshold the ground truth distance maps.
 - **`dilation_radius`**: Radius for dilating the ground truth path mask.
 
 ## Installation
