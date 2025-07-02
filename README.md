@@ -12,12 +12,16 @@ After extracting the ground truth graph, an iterative process selects pairs of v
  * [Project Page](https://neuravisionlab.github.io/CAPE/)
  * [Paper](https://arxiv.org/abs/2504.00753)
 
-## Features
+## Usage
 
-- **Connectivity-Aware Loss**: Optimizes topological correctness using a differentiable loss based on the Average Path Length Similarity (APLS) metric.
-- **2D and 3D Support**: Handles both 2D and 3D tasks.
-- **Dijkstra-Based Path Computation**: Uses Dijkstra's algorithm to compute shortest paths, with a masking strategy to handle noisy centerlines and loops.
-- **Flexible Window-Based Processing**: Processes large images/volumes by dividing them into manageable patches.
+The loss requires several parameters for configuration which are described below:
+
+window_size=128, three_dimensional=False, distance_threshold=20, dilation_radius=10
+
+- **`window_size`**: Size of the window for processing image patches.
+- **`three_dimensional`**: CAPE works for both 2D and 3D. In order to work with 3D please set this parameter to be True. 
+- **`distance_threshold`**: The loss is designed to work with distance maps which are usually threshold with a value. This parameter indicates the value used to threshold the ground truth.
+- **`dilation_radius`**: Radius for dilating the ground truth path mask.
 
 ## Installation
 
