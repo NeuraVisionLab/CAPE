@@ -1,13 +1,16 @@
 # CAPE: Connectivity-Aware Path Enforcement Loss for Curvilinear Structure Delineation
 
-This repository contains the implementation of **CAPE (Connectivity-Aware Path Enforcement Loss)**, a novel loss function designed to improve the connectivity of curvilinear structures in biomedical image segmentation, such as neuronal processes and blood vessels. The method leverages Dijkstra's algorithm to enforce topological correctness by comparing shortest paths between ground truth and predicted segmentations, as described in the paper.
+<p align="center">
+  <img src="./src/docs/static/images/FIG_NEW.png" alt="Project or Page Cover" width="99%" style="border-radius: 50px;"/>
+</p>
+
+CAPE addresses the challenge of preserving topological connectivity in curvilinear structure segmentation, a critical issue in biomedical imaging where conventional pixel-wise loss functions often fail to ensure global connectivity. By computing shortest paths in the pixel domain and comparing their costs, CAPE generates denser gradients along entire paths, enhancing connectivity enforcement while remaining suitable for gradient-based optimization. The implementation supports both 2D and 3D datasets and integrates seamlessly with deep learning frameworks like PyTorch.
+
+After extracting the ground truth graph, an iterative process selects pairs of vertices and computes their shortest path. The corresponding path is then masked with dilation and projected to the pixel domain, and the shortest path algorithm is reapplied to obtain L<sub>CAPE</sub>.
+
 
  * [Project Page](https://neuravisionlab.github.io/CAPE/)
  * [Paper](https://arxiv.org/abs/2504.00753)
-
-## Overview
-
-CAPE addresses the challenge of preserving topological connectivity in curvilinear structure segmentation, a critical issue in biomedical imaging where conventional pixel-wise loss functions often fail to ensure global connectivity. By computing shortest paths in the pixel domain and comparing their costs, CAPE generates denser gradients along entire paths, enhancing connectivity enforcement while remaining suitable for gradient-based optimization. The implementation supports both 2D and 3D datasets and integrates seamlessly with deep learning frameworks like PyTorch.
 
 ## Features
 
