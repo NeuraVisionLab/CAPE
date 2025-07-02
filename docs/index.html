@@ -111,7 +111,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
+                <a href="https://arxiv.org/pdf/2504.00753"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -120,7 +120,7 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
+                <a href="https://arxiv.org/abs/2504.00753"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -129,7 +129,7 @@
                 </a>
               </span>
               <!-- Video Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -137,10 +137,10 @@
                   </span>
                   <span>Video</span>
                 </a>
-              </span>
+              </span> -->
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/google/nerfies"
+                <a href="https://github.com/NeuraVisionLab/CAPE"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -149,14 +149,14 @@
                   </a>
               </span>
               <!-- Dataset Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://github.com/google/nerfies/releases/tag/0.1"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="far fa-images"></i>
                   </span>
                   <span>Data</span>
-                  </a>
+                  </a> -->
               </div>
             </div>
           </div>
@@ -276,11 +276,7 @@
 <section class="section" id="results">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Results</h2>
-    <div class="content has-text-centered">
-      <p>
-        Qualitative comparison of the test results in 2D and 3D datasets. The arrows highlight regions that remain disconnected in alternative methods but are successfully connected using CAPE. The connectivity improves significantly when our approach is used.
-      </p>
-    </div>
+    
     <div class="table-container">
       <table class="table is-fullwidth has-text-centered no-borders center-table-cells">
         <thead>
@@ -297,33 +293,38 @@
         <tbody>
           <tr>
             <th>CREMI</th>
-            <td><img src="./static/images/cremi_image.png" alt="CREMI Input" style="width:100%"></td>
-            <td><img src="./static/images/cremi_label.png" alt="CREMI Label" style="width:100%"></td>
-            <td><img src="./static/images/cremi_agata.png" alt="CREMI Perc" style="width:100%"></td>
-            <td><img src="./static/images/cremi_clDice.png" alt="CREMI clDice" style="width:100%"></td>
-            <td><img src="./static/images/cremi_malis.png" alt="CREMI InvMALIS" style="width:100%"></td>
-            <td><img src="./static/images/cremi_ours.png" alt="CREMI CAPE" style="width:100%"></td>
+            <td><img src="./static/images/cremi_image.png" alt="CREMI Input" ></td>
+            <td><img src="./static/images/cremi_label.png" alt="CREMI Label" ></td>
+            <td><img src="./static/images/cremi_agata.png" alt="CREMI Perc" ></td>
+            <td><img src="./static/images/cremi_clDice.png" alt="CREMI clDice" ></td>
+            <td><img src="./static/images/cremi_malis.png" alt="CREMI InvMALIS" ></td>
+            <td><img src="./static/images/cremi_ours.png" alt="CREMI CAPE" ></td>
           </tr>
           <tr>
             <th>DRIVE</th>
-            <td><img src="./static/images/drive_image.png" alt="DRIVE Input" style="width:100%"></td>
-            <td><img src="./static/images/drive_label.png" alt="DRIVE Label" style="width:100%"></td>
-            <td><img src="./static/images/drive_agata.png" alt="DRIVE Perc" style="width:100%"></td>
-            <td><img src="./static/images/drive_clDice.png" alt="DRIVE clDice" style="width:100%"></td>
-            <td><img src="./static/images/drive_malis.png" alt="DRIVE InvMALIS" style="width:100%"></td>
-            <td><img src="./static/images/drive_ours.png" alt="DRIVE CAPE" style="width:100%"></td>
+            <td><img src="./static/images/drive_image.png" alt="DRIVE Input" ></td>
+            <td><img src="./static/images/drive_label.png" alt="DRIVE Label" ></td>
+            <td><img src="./static/images/drive_agata.png" alt="DRIVE Perc" ></td>
+            <td><img src="./static/images/drive_clDice.png" alt="DRIVE clDice" ></td>
+            <td><img src="./static/images/drive_malis.png" alt="DRIVE InvMALIS" ></td>
+            <td><img src="./static/images/drive_ours.png" alt="DRIVE CAPE" ></td>
           </tr>
           <tr>
             <th>Brain</th>
-            <td><img src="./static/images/brain_image.png" alt="Brain Input" style="width:100%"></td>
-            <td><img src="./static/images/brain_label.png" alt="Brain Label" style="width:100%"></td>
-            <td><img src="./static/images/brain_agata.png" alt="Brain Perc" style="width:100%"></td>
-            <td><img src="./static/images/brain_clDice.png" alt="Brain clDice" style="width:100%"></td>
-            <td><img src="./static/images/brain_malis.png" alt="Brain InvMALIS" style="width:100%"></td>
-            <td><img src="./static/images/brain_ours.png" alt="Brain CAPE" style="width:100%"></td>
+            <td><img src="./static/images/brain_image.png" alt="Brain Input" ></td>
+            <td><img src="./static/images/brain_label.png" alt="Brain Label" ></td>
+            <td><img src="./static/images/brain_agata.png" alt="Brain Perc" ></td>
+            <td><img src="./static/images/brain_clDice.png" alt="Brain clDice" ></td>
+            <td><img src="./static/images/brain_malis.png" alt="Brain InvMALIS" ></td>
+            <td><img src="./static/images/brain_ours.png" alt="Brain CAPE" ></td>
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="content has-text-centered has-text-justified">
+      <p>
+        Qualitative comparison of the test results in 2D and 3D datasets. The arrows highlight regions that remain disconnected in alternative methods but are successfully connected using CAPE. The connectivity improves significantly when our approach is used.
+      </p>
     </div>
   </div>
 </section>
@@ -331,16 +332,51 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
+
+    <div style="position: relative;">
+      <button 
+        id="copyBibTeXBtn" 
+        style="
+          position: absolute; 
+          right: 10px; 
+          top: 10px; 
+          background-color: #3273dc; 
+          color: white; 
+          border: none; 
+          padding: 0.4em 0.8em; 
+          border-radius: 4px; 
+          cursor: pointer;
+          font-size: 0.9em;
+        ">
+        Copy
+      </button>
+      <pre id="bibtexCode" style="overflow-x:auto; padding-top: 2.5em;"><code>@misc{esmaeilzadeh2025CAPE,
+        title={CAPE: Connectivity-Aware Path Enforcement Loss for Curvilinear Structure Delineation}, 
+        author={Elyar Esmaeilzadeh and Ehsan Garaaghaji and Farzad Hallaji Azad and Doruk Oner},
+        year={2025},
+        eprint={2504.00753},
+        archivePrefix={arXiv},
+        primaryClass={cs.CV},
+        url={https://arxiv.org/abs/2504.00753}, 
+  }
 }</code></pre>
+    </div>
   </div>
 </section>
 
-<footer class="footer">
+<script>
+  document.getElementById('copyBibTeXBtn').addEventListener('click', () => {
+    const text = document.getElementById('bibtexCode').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      // Optional: change button text briefly to show success
+      const btn = document.getElementById('copyBibTeXBtn');
+      btn.innerText = 'Copied!';
+      setTimeout(() => btn.innerText = 'Copy', 2000);
+    });
+  });
+</script>
+
+<!-- <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
       <a class="icon-link"
@@ -370,7 +406,7 @@
       </div>
     </div>
   </div>
-</footer>
+</footer> -->
 
 </body>
 </html>
