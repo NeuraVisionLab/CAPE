@@ -104,11 +104,9 @@
           <div class="is-size-5 publication-authors">
             NeuraVision Lab, Bilkent University, Ankara, Turkey
           </div>
-
           <div class="is-size-5 publication-authors">
             <span class="author-block">NeuraVision Lab, Bilkent University</span>
           </div>
-
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
@@ -159,8 +157,14 @@
                   </span>
                   <span>Data</span>
                   </a>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <img src="./static/images/bilkent_logo.png" alt="Bilkent University Logo" style="max-width: 200px; margin-top: 20px;">
         </div>
       </div>
     </div>
@@ -170,12 +174,12 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
+      <video id="teaser" autoplay muted loop playsinline style="max-width: 800px; width: 100%; height: auto;"></video>
         <source src="./static/videos/output_video.mp4"
                 type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf"></span> Effect of loss in training.
+        <span class="dnerf">Cape</span> increases the connectivity of curvilinear structures. The video above illustrates the effectiveness of our approach in enhancing the connectivity in segmentation.
       </h2>
     </div>
   </div>
@@ -200,32 +204,31 @@
 
 <section class="section">
   <div class="container is-max-desktop">
+
     <div class="columns is-centered">
-      <!-- Visual Effects (image replacement) -->
       <div class="column">
         <div class="content">
           <h2 class="title is-3">Visual Effects</h2>
           <p>
             Using CAPE, we improve the connectivity of curvilinear structures while preserving details. The figure below shows a successful reconstruction.
           </p>
-          <img src="./static/images/cape_visual_effects.png" alt="CAPE visual effect example" style="width:100%;">
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
-
-      <!-- Matting (image replacement) -->
-      <div class="column">
-        <h2 class="title is-3">Connectivity Enforcement</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              CAPE effectively preserves the connectivity of neuronal and vascular structures. The illustration below highlights improved segmentation compared to alternative methods.
-            </p>
-            <img src="./static/images/cape_connectivity.png" alt="CAPE connectivity result" style="width:100%;">
-          </div>
+          <img src="./static/images/FIG_NEW.png" alt="CAPE visual effect example" style="width:100%;">
         </div>
       </div>
     </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Connectivity Enforcement</h2>
+          <p>
+            CAPE effectively preserves the connectivity of neuronal and vascular structures. The illustration below highlights improved segmentation compared to alternative methods.
+          </p>
+          <img src="./static/images/FIG_MASK.png" alt="CAPE connectivity result" style="width:100%;">
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
