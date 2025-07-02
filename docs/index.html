@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="CAPE: Connectivity-Aware Path Enforcement Loss for Curvilinear Structure Delineation">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAPE: Connectivity-Aware Path Enforcement Loss for Curvilinear Structure Delineation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">CAPE: Connectivity-Aware Path Enforcement Loss for Curvilinear Structure Delineation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://orcid.org/0009-0003-5610-2604">Elyar Esmaeilzadeh</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://orcid.org/0009-0003-2720-7415">Ehsan Garaaghaji</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://orcid.org/0009-0003-3882-4275">Farzad Hallaji Azad</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://orcid.org/0000-0002-9403-4628">Doruk Oner</a> *
+            </span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            NeuraVision Lab, Bilkent University, Ankara, Turkey
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">NeuraVision Lab, Bilkent University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/output_video.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf"></span> Effect of loss in training.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Promoting the connectivity of curvilinear structures, such as neuronal processes in biomedical scans and blood vessels in CT images, remains a key challenge in semantic segmentation. Traditional pixel-wise loss functions, including cross-entropy and Dice losses, often fail to capture high-level topological connectivity, resulting in topological mistakes in graphs obtained from prediction maps. In this paper, we propose CAPE (Connectivity-Aware Path Enforcement), a novel loss function designed to enforce connectivity in graphs obtained from segmentation maps by optimizing a graph connectivity metric. CAPE uses the graph representation of the ground truth to select node pairs and determine their corresponding paths within the predicted segmentation through a shortest-path algorithm. Using this, we penalize both disconnections and false positive connections, effectively promoting the model to preserve topological correctness. Experiments on 2D and 3D datasets, including neuron and blood vessel tracing demonstrate that CAPE significantly improves topology-aware metrics and outperforms state-of-the-art methods. The code will be made publicly available upon acceptance.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <!-- Visual Effects (image replacement) -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Visual Effects</h2>
+          <p>
+            Using CAPE, we improve the connectivity of curvilinear structures while preserving details. The figure below shows a successful reconstruction.
+          </p>
+          <img src="./static/images/cape_visual_effects.png" alt="CAPE visual effect example" style="width:100%;">
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting (image replacement) -->
+      <div class="column">
+        <h2 class="title is-3">Connectivity Enforcement</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              CAPE effectively preserves the connectivity of neuronal and vascular structures. The illustration below highlights improved segmentation compared to alternative methods.
+            </p>
+            <img src="./static/images/cape_connectivity.png" alt="CAPE connectivity result" style="width:100%;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="results">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Results</h2>
+    <div class="content has-text-centered">
+      <p>
+        Qualitative comparison of the test results in 2D and 3D datasets. The arrows highlight regions that remain disconnected in alternative methods but are successfully connected using CAPE. The connectivity improves significantly when our approach is used.
+      </p>
+    </div>
+    <div class="table-container">
+      <table class="table is-bordered is-striped is-narrow is-fullwidth">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Input</th>
+            <th>Label</th>
+            <th>Perc</th>
+            <th>clDice</th>
+            <th>InvMALIS</th>
+            <th>CAPE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>CREMI</th>
+            <td><img src="./static/images/cremi_image.png" alt="CREMI Input" style="width:100%"></td>
+            <td><img src="./static/images/cremi_label.png" alt="CREMI Label" style="width:100%"></td>
+            <td><img src="./static/images/cremi_agata.png" alt="CREMI Perc" style="width:100%"></td>
+            <td><img src="./static/images/cremi_clDice.png" alt="CREMI clDice" style="width:100%"></td>
+            <td><img src="./static/images/cremi_malis.png" alt="CREMI InvMALIS" style="width:100%"></td>
+            <td><img src="./static/images/cremi_ours.png" alt="CREMI CAPE" style="width:100%"></td>
+          </tr>
+          <tr>
+            <th>DRIVE</th>
+            <td><img src="./static/images/drive_image.png" alt="DRIVE Input" style="width:100%"></td>
+            <td><img src="./static/images/drive_label.png" alt="DRIVE Label" style="width:100%"></td>
+            <td><img src="./static/images/drive_agata.png" alt="DRIVE Perc" style="width:100%"></td>
+            <td><img src="./static/images/drive_clDice.png" alt="DRIVE clDice" style="width:100%"></td>
+            <td><img src="./static/images/drive_malis.png" alt="DRIVE InvMALIS" style="width:100%"></td>
+            <td><img src="./static/images/drive_ours.png" alt="DRIVE CAPE" style="width:100%"></td>
+          </tr>
+          <tr>
+            <th>Brain</th>
+            <td><img src="./static/images/brain_image.png" alt="Brain Input" style="width:100%"></td>
+            <td><img src="./static/images/brain_label.png" alt="Brain Label" style="width:100%"></td>
+            <td><img src="./static/images/brain_agata.png" alt="Brain Perc" style="width:100%"></td>
+            <td><img src="./static/images/brain_clDice.png" alt="Brain clDice" style="width:100%"></td>
+            <td><img src="./static/images/brain_malis.png" alt="Brain InvMALIS" style="width:100%"></td>
+            <td><img src="./static/images/brain_ours.png" alt="Brain CAPE" style="width:100%"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
