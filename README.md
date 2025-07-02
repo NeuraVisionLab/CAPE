@@ -16,8 +16,6 @@ After extracting the ground truth graph, an iterative process selects pairs of v
 
 The loss requires several parameters for configuration which are described below:
 
-window_size=128, three_dimensional=False, distance_threshold=20, dilation_radius=10
-
 - **`window_size`**: Size of the window for processing image patches.
 - **`three_dimensional`**: CAPE works for both 2D and 3D. In order to work with 3D please set this parameter to be True. 
 - **`distance_threshold`**: The loss is designed to work with distance maps which are usually threshold with a value. This parameter indicates the value used to threshold the ground truth.
