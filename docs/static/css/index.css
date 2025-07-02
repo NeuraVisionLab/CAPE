@@ -184,6 +184,15 @@ table.center-table-cells td {
   height: auto;
 }
 
+.grey-box {
+  background-color: #f6f6f6; /* mellow grey, you can tweak the shade */
+  border-radius: 5px;
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
+  color: #333; /* dark text for contrast */
+}
 
 
 
