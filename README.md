@@ -8,9 +8,7 @@ CAPE addresses the challenge of preserving topological connectivity in curviline
 
 After extracting the ground truth graph, an iterative process selects pairs of vertices and computes their shortest path. The corresponding path is then masked with dilation and projected to the pixel domain, and the shortest path algorithm is reapplied to obtain L<sub>CAPE</sub>.
 
-
- * [Project Page](https://neuravisionlab.github.io/CAPE/)
- * [Paper](https://arxiv.org/abs/2504.00753)
+### [Project Page](https://neuravisionlab.github.io/CAPE/) | [arXiv Paper](https://arxiv.org/abs/2504.00753) | [ICML Paper]()
 
 ## Usage
 
