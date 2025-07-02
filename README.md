@@ -46,7 +46,7 @@ The CAPE loss has been evaluated on the following datasets:
 If you find our work useful, please consider citing:
 
 ```BibTeX
-@misc{esmaeilzadeh2025capeconnectivityawarepathenforcement,
+@misc{esmaeilzadeh2025,
       title={CAPE: Connectivity-Aware Path Enforcement Loss for Curvilinear Structure Delineation}, 
       author={Elyar Esmaeilzadeh and Ehsan Garaaghaji and Farzad Hallaji Azad and Doruk Oner},
       year={2025},
