@@ -39,6 +39,26 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <!-- 1. In your <head>, add Prism -->
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css"
+  />
+  <script
+  src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+  defer
+  ></script>
+  <script
+  src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"
+  defer
+  ></script>
+
+  
+  <script
+  src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"
+  defer
+  ></script>
+
 </head>
 <body>
 
@@ -86,44 +106,62 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-2 publication-title" style="color: #44708d;">CAPE: Connectivity-Aware Path Enforcement Loss for Curvilinear Structure Delineation</h1>
-          <div class="is-size-5 publication-authors" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 0rem;">
+          <h1
+          class="publication-title title
+                 is-size-4-mobile   
+                 is-size-3-tablet    
+                 is-size-2-desktop"  
+          style="color: #44708d;"
+        >
+          CAPE: Connectivity-Aware Path Enforcement Loss for Curvilinear Structure Delineation
+        </h1>          
+        <div
+          class="publication-authors
+                 is-size-6-mobile    
+                 is-size-5-desktop"  
+          style="display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem;"
+        >
             <span class="author-block" style="position: relative; padding-right: 1.5rem; display: inline-block; line-height: 1.2;">
               Elyar Esmaeilzadeh
               <a href="https://orcid.org/0009-0003-5610-2604" target="_blank" rel="noopener" aria-label="ORCID Elyar Esmaeilzadeh"
                 style="position: absolute; top: 0rem; right: 0; display: inline-block; width: 1.2rem; height: 1.2rem;">
                 <img src="https://orcid.org/sites/default/files/images/orcid_24x24.png" alt="ORCID" style="width: 100%; height: 100%;">
               </a>
-            </span>
+              
+            </span>,&nbsp;
 
             <span class="author-block" style="position: relative; padding-right: 1.5rem; display: inline-block; line-height: 1.2;">
-              , Ehsan Garaaghaji
+              Ehsan Garaaghaji
               <a href="https://orcid.org/0009-0003-2720-7415" target="_blank" rel="noopener" aria-label="ORCID Ehsan Garaaghaji"
                 style="position: absolute; top: 0rem; right: 0; display: inline-block; width: 1.2rem; height: 1.2rem;">
                 <img src="https://orcid.org/sites/default/files/images/orcid_24x24.png" alt="ORCID" style="width: 100%; height: 100%;">
               </a>
-            </span>
+            </span>,&nbsp;
 
             <span class="author-block" style="position: relative; padding-right: 1.5rem; display: inline-block; line-height: 1.2;">
-              , Farzad Hallaji Azad
+              Farzad Hallaji Azad
               <a href="https://orcid.org/0009-0003-3882-4275" target="_blank" rel="noopener" aria-label="ORCID Farzad Hallaji Azad"
                 style="position: absolute; top: 0rem; right: 0; display: inline-block; width: 1.2rem; height: 1.2rem;">
                 <img src="https://orcid.org/sites/default/files/images/orcid_24x24.png" alt="ORCID" style="width: 100%; height: 100%;">
               </a>
-            </span>
+            </span>,&nbsp;
 
             <span class="author-block" style="position: relative; padding-right: 1.5rem; display: inline-block; line-height: 1.2;">
-              , Doruk Oner
+              Doruk Oner
               <a href="https://orcid.org/0000-0002-9403-4628" target="_blank" rel="noopener" aria-label="ORCID Doruk Oner"
                 style="position: absolute; top: 0rem; right: 0; display: inline-block; width: 1.2rem; height: 1.2rem;">
                 <img src="https://orcid.org/sites/default/files/images/orcid_24x24.png" alt="ORCID" style="width: 100%; height: 100%;">
               </a>
             </span>
           </div>
-          <div class="is-size-5 publication-authors" style="margin-top: 0.5rem;">
+          <div class="is-size-6-mobile    
+                  is-size-5-desktop
+                  publication-authors" style="margin-top: 0.5rem;">
             NeuraVision Lab, Bilkent University, Ankara, Turkey
           </div>
-          <div class="is-size-5 publication-authors">
+          <div class="is-size-6-mobile    
+                  is-size-5-desktop
+                  publication-authors">
             <span class="author-block">NeuraVision Lab, Bilkent University</span>
           </div>
 
@@ -257,6 +295,9 @@
 </section>
 
 
+
+
+
 <!-- <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -284,6 +325,95 @@
   </div>
 </section> -->
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Algorithm</h2>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <figure class="has-text-centered">
+          <img src="./static/images/code.png" alt="Algorithm code snapshot" style="width:70%; max-width:800px;">
+        </figure>
+        <p class="grey-box" style="text-align:justify;">
+          This is the algorithm for our approach, illustrating how we compute the CAPE loss. 
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  
+
+
+<section class="section" id="cape-reference">
+  <div class="container is-max-desktop">
+    <div class="box">
+      <!-- Title and Signature -->
+       
+      <header class="card-header has-background-info-light">
+        <p class="card-header-title has-text-info-dark is-size-3 has-text-weight-bold">
+          Usage
+        </p>
+      </header>
+      <pre class="code-border"><code class="language-python">class CAPE(nn.Module):
+      def __init__(self, window_size=128, three_dimensional=False, distance_threshold=20, dilation_radius=10)</code></pre>
+
+      <!-- Short Description -->
+      <p>
+        The 
+        <a href="https://github.com/NeuraVisionLab/CAPE/blob/main/loss.py" class="has-text-info has-text-weight-semibold">
+          CAPE loss module
+        </a> 
+        compares shortest paths in predicted and ground-truth distance maps. It samples random node pairs
+        from the ground-truth graph and penalizes disconnections via Dijkstra’s algorithm.
+      </p>
+
+      <!-- Parameters -->
+      
+      <h2 class="title is-6 has-background-light" style="margin-bottom: -0.5rem; margin-top: 1rem; padding-left: 0.2rem; padding-top: 0.2rem; padding-bottom: 0.2rem;">Parameters</h2>
+      <dl style="margin-top: 1rem;">
+        <dt><strong>window_size&nbsp; : &nbsp;<em>int</em> (default=128)</dt></strong>
+        <dd style="margin-left: 1rem; margin-bottom: 0.5rem;">
+          Size of the sliding window used to extract local patches or volumes.
+        </dd>
+
+        <dt><strong>three_dimensional&nbsp; : &nbsp;<em>bool</em> (default=False)</dt></strong>
+        <dd style="margin-left: 1rem; margin-bottom: 0.5rem;">
+          If True, operate on 3D volumes; otherwise, on 2D images.
+        </dd>
+
+        <dt><strong>distance_threshold&nbsp; : &nbsp;<em>float</em> (default=20)</dt></strong>
+        <dd style="margin-left: 1rem; margin-bottom: 0.5rem;">
+          Maximum distance value when constructing the distance map.
+        </dd>
+
+        <dt><strong>dilation_radius&nbsp; : &nbsp;<em>int</em> (default=10)</dt></strong>
+        <dd style="margin-left: 1rem; margin-bottom: 0.5rem;">
+          Radius (in pixels/voxels) to dilate the ground-truth path mask before routing.
+        </dd>
+      </dl>
+
+      <!-- Returns -->
+      <h2 class="title is-6 has-background-light mt-5" style="margin-bottom: -0.5rem; margin-top: 1rem; padding-left: 0.2rem; padding-top: 0.2rem; padding-bottom: 0.2rem;">Returns</h2>
+      <dl style="margin-top: 1rem;">
+        <dt><strong>loss&nbsp; : &nbsp;<em>torch.Tensor</em></dt></strong>
+        <dd style="margin-left: 1rem;">
+          A scalar tensor representing the average CAPE loss over the batch.
+        </dd>
+      </dl>
+
+      <!-- Notes -->
+      <h2 class="title is-6 has-background-light mt-5" style="margin-bottom: -0.5rem; margin-top: 1rem; padding-left: 0.2rem; padding-top: 0.2rem; padding-bottom: 0.2rem;">Notes</h2>
+      <div class="notification is-info is-light" style="margin-top: 1rem;">
+        <ul>
+          <li>Uses <code>skimage.graph.route_through_array</code> for shortest-path routing.</li>
+          <li>Constructs the skeleton graph with <code>graph_from_skeleton_2D</code> or <code>graph_from_skeleton_3D</code>.</li>
+          <li>Integrate CAPE with standard segmentation losses (e.g., MSE) for full training.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="results">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Results</h2>
@@ -297,7 +427,7 @@
             <th>Label</th>
             <th>Perc</th>
             <th>clDice</th>
-            <th>InvMALIS</th>
+            <th>MALIS</th>
             <th>CAPE</th>
           </tr>
         </thead>
@@ -370,7 +500,7 @@
         primaryClass={cs.CV},
         url={https://arxiv.org/abs/2504.00753}, 
   }
-}</code></pre>
+</code></pre>
     </div>
   </div>
 </section>
