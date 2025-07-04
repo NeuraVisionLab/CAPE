@@ -23,9 +23,8 @@ The loss requires several parameters for configuration which are described below
 - **`distance_threshold (float):`** Maximum value used for clipping ground-truth distance maps.
 - **`single_edge (bool):`** If True, sample a single edge at a time; otherwise, sample a path.
 
-> **Notes:**
->
-> Predictions must be a `torch.Tensor` of shape `(batch, H, W)` for 2D or `(batch, D, H, W)` for 3D.
+> **Notes:** <br>
+> Predictions must be a `torch.Tensor` of shape `(batch, H, W)` for 2D or `(batch, D, H, W)` for 3D. <br>
 > Ground truths can be a list of graphs in `networkx.Graph` format, or images (`np.ndarray` or `torch.Tensor`) of the same shape as prediction.
 
 
