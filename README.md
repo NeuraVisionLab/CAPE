@@ -42,7 +42,7 @@ pip install torch numpy scikit-image opencv-python scipy networkx
 
 
 
-## Graph Extraction & Export
+## Graph Extraction
 
 The **`utils`** folder includes our implementation of two key functions—`graph_from_skeleton_2D`
 and `graph_from_skeleton_3D`—used by CAPE. Each function converts an skeleton mask into an undirected `networkx.Graph`. We also include helper functions for cropping these graphs into smaller patches under the same directory. 
