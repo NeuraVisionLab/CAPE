@@ -11,7 +11,6 @@ def crop_graph_2D(graph, xmin, ymin, xmax, ymax, precision=8):
     inside_nodes = {}        
     coord_to_node = {}      
     
-    
     for n, data in graph.nodes(data=True):
         pos = data['pos']
         node_positions[n] = pos
