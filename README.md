@@ -33,6 +33,39 @@ pip install torch numpy scikit-image opencv-python scipy networkx
 
 **Note**: The code requires custom utility functions `graph_from_skeleton_2D` and `graph_from_skeleton_3D`, which are available in the `utils` module. Ensure these are included in your project directory.
 
+## Graph Extraction & Export
+
+Two helper routines live in `utils/`:
+
+* **`graph_from_skeleton_2D`**
+* **`graph_from_skeleton_3D`**
+
+Each one converts a skeleton mask into a `networkx.Graph` whose nodes keep pixel/voxel coordinates and whose edges record arc-length.  
+CAPE calls these during training, but you can run them once beforehand with `extract_graph.py`:
+
+```bash
+# 2-D dataset → graphs (saved to npy_images/graphs)
+python extract_graph.py npy_images
+
+# 3-D dataset → graphs (saved to ./brain_graphs)
+python extract_graph.py brain_vols --dim 3 --out_dir brain_graphs
+```
+Useful flags
+	•	--dim {2|3} choose 2-D or 3-D builder (default 2)
+	•	--threshold T binarise masks that are not already 0/1 (default 0.5)
+	•	--out_dir DIR folder for the resulting .gpickle graphs
+(default <FOLDER>/graphs)
+
+The script saves each graph with pickle, so loading it later gives the exact same object:
+```python
+import pickle
+G = pickle.load(open("brain_graphs/volume_000.gpickle", "rb"))
+print(G.number_of_nodes(), "nodes ·", G.number_of_edges(), "edges")
+```
+These cached graphs can be passed directly to the CAPE loss, avoiding graph construction inside the training loop.
+
+
+
 ## Datasets
 
 The CAPE loss has been evaluated on the following datasets:
