@@ -33,6 +33,7 @@
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -269,8 +270,13 @@
             <img src="./static/images/FIG_NEW.png" alt="CAPE visual effect example" style="width:100%;">
           </figure>
 
-          <p class="grey-box">
-            After extracting the ground truth graph, an iterative process selects pairs of vertices and computes their shortest path. The corresponding path is then masked with dilation and projected to the pixel domain, and the shortest path algorithm is reapplied to obtain L<sub>CAPE</sub>.
+          <p class="grey-box" style="text-align:justify;">
+            The ground-truth mask is skeletonised and converted to a graph. 
+            In every iteration we sample a connected vertex pair and find its shortest path with Dijkstra’s algorithm; this path has zero cost because the label is perfectly connected. 
+            The two vertices are then shifted to the lowest-cost pixels within a small window on the network’s predicted distance map, providing tolerance to minor mis-alignments. 
+            Fixing those endpoints, we apply Dijkstra again on the prediction. 
+            The <code>L<sub>CAPE</sub></code> for this pair is the sum of squared distance values along that predicted path—close to zero when connectivity is correct and larger when a gap is present. 
+            Averaging such costs over many pairs and adding them to a standard pixel-wise loss (e.g.&nbsp;MSE) yields the total objective used for back-propagation.
           </p>
         </div>
       </div>
@@ -284,8 +290,11 @@
           <figure class="has-text-centered">
             <img src="./static/images/FIG_MASK.png" alt="CAPE connectivity result" style="width:100%;">
           </figure>
-          <p class="grey-box">
-            Left: Ground truth graph with selected vertices and the shortest path computed via Dijkstra’s algorithm. Middle: Projected vertices on the predicted distance map and the corresponding Dijkstra path computed without masking; due to a loop, the algorithm bypasses the disconnection. Right: With a mask applied around the ground truth path, Dijkstra is forced to capture the disconnection by preventing an alternate loop path.
+          <p class="grey-box" style="text-align:justify;">
+            We convert the ground-truth path into a binary mask \(M\) and dilate it by 10&nbsp;pixels to obtain \(M_{\text{dilated}}\).
+            Multiplying the predicted distance map \(\hat{y}\) by this dilated mask assigns an infinite cost to every pixel outside the mask.
+            Dijkstra’s algorithm is then run between the projected vertices \(v'_1\) and \(v'_2\) on the masked map.
+            Because the search is confined to the dilated region, it cannot bypass a disconnection through a loop, and the number of pixels examined is smaller, which reduces the computation time of the loss.
           </p>
         </div>
       </div>
@@ -325,16 +334,47 @@
   </div>
 </section> -->
 
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Vertex&nbsp;Shifting</h2>
+
+    <!-- Video demo -->
+    <figure class="has-text-centered">
+      <video autoplay muted loop playsinline style="width:40%; height:auto;">
+        <source src="./static/videos/shifting.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </figure>
+
+
+    <!-- Explanation -->
+    <p class="grey-box" style="text-align:justify;">
+      Directly mapping a graph vertex to the corresponding pixel in the predicted distance map \(\hat{y}\) can penalise the model for errors introduced by noisy center-line annotations.  
+      To mitigate this, each vertex \(v\) is relocated to the pixel within a radius of \(r = 5\) px that minimises \(\hat{y}(v)\).  
+      Formally, the shifted position is  
+      \[
+        v' \;=\; \arg\min_{u \in \mathcal{N}_r(v)} \hat{y}(u),
+      \]
+      where \(\mathcal{N}_r(v)\) denotes the square (or cubic) neighbourhood of side length \(2r+1\) centerd at \(v\).  
+      This operation keeps the endpoints aligned with the predicted center line, providing a more stable starting point for the masked shortest-path search and yielding smoother gradients during optimisation.
+    </p>
+  </div>
+</section>
+
+
+
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Algorithm</h2>
     <div class="columns is-centered">
       <div class="column is-four-fifths">
         <figure class="has-text-centered">
-          <img src="./static/images/code.png" alt="Algorithm code snapshot" style="width:70%; max-width:800px;">
+          <img src="./static/images/code.png" alt="Algorithm code snapshot" style="width:90%; max-width:800px;">
         </figure>
         <p class="grey-box" style="text-align:justify;">
-          This is the algorithm for our approach, illustrating how we compute the CAPE loss. 
+          <strong>Overall&nbsp;algorithm.</strong>
+          We iteratively samples vertex pairs until every edge of the ground-truth graph has been processed. For each pair the shortest path is extracted, the corresponding mask is generated and then it is dilated. The vertices are shifted on the prediction to compensate for the noisy center-line annotations. Then, shortest path within the masked region is computed.  The squared distance values accumulated along all predicted paths define <code>L<sub>CAPE</sub></code>, which is averaged over the sampled pairs. 
         </p>
       </div>
     </div>
@@ -343,19 +383,20 @@
 
   
 
-
 <section class="section" id="cape-reference">
   <div class="container is-max-desktop">
     <div class="box">
       <!-- Title and Signature -->
-       
       <header class="card-header has-background-info-light">
         <p class="card-header-title has-text-info-dark is-size-3 has-text-weight-bold">
           Usage
         </p>
       </header>
       <pre class="code-border"><code class="language-python">class CAPE(nn.Module):
-    def __init__(self, window_size=128, three_dimensional=False, distance_threshold=20, dilation_radius=10)</code></pre>
+    def __init__(
+        self, window_size=128, three_dimensional=False, dilation_radius=10, shifting_radius=5, is_binary=False, 
+        distance_threshold=20, single_edge=False
+    )</code></pre>
 
       <!-- Short Description -->
       <p>
@@ -364,38 +405,52 @@
           CAPE loss module
         </a> 
         compares shortest paths in predicted and ground-truth distance maps. It samples random node pairs
-        from the ground-truth graph and penalizes disconnections via Dijkstra’s algorithm.
+        from the ground-truth graph (or skeletonized mask) and penalizes deviations in path cost via Dijkstra’s algorithm.
       </p>
 
       <!-- Parameters -->
-      
       <h2 class="title is-6 has-background-light" style="margin-bottom: -0.5rem; margin-top: 1rem; padding-left: 0.2rem; padding-top: 0.2rem; padding-bottom: 0.2rem;">Parameters</h2>
       <dl style="margin-top: 1rem;">
-        <dt><strong>window_size&nbsp; : &nbsp;<em>int</em> (default=128)</dt></strong>
+        <dt><strong>window_size&nbsp; : &nbsp;<em>int</em> (default=128)</strong></dt>
         <dd style="margin-left: 1rem; margin-bottom: 0.5rem;">
-          Size of the sliding window used to extract local patches or volumes.
+          Size of each square patch (2D) or cubic volume (3D) to process at a time.
         </dd>
 
-        <dt><strong>three_dimensional&nbsp; : &nbsp;<em>bool</em> (default=False)</dt></strong>
+        <dt><strong>three_dimensional&nbsp; : &nbsp;<em>bool</em> (default=False)</strong></dt>
         <dd style="margin-left: 1rem; margin-bottom: 0.5rem;">
-          If True, operate on 3D volumes; otherwise, on 2D images.
+          If True, operate on 3D volumes (D×H×W); otherwise, on 2D images (H×W).
         </dd>
 
-        <dt><strong>distance_threshold&nbsp; : &nbsp;<em>float</em> (default=20)</dt></strong>
+        <dt><strong>dilation_radius&nbsp; : &nbsp;<em>int</em> (default=10)</strong></dt>
         <dd style="margin-left: 1rem; margin-bottom: 0.5rem;">
-          Maximum distance value when constructing the distance map.
+          Radius (in pixels/voxels) to dilate ground-truth paths for masking.
         </dd>
 
-        <dt><strong>dilation_radius&nbsp; : &nbsp;<em>int</em> (default=10)</dt></strong>
+        <dt><strong>shifting_radius&nbsp; : &nbsp;<em>int</em> (default=5)</strong></dt>
         <dd style="margin-left: 1rem; margin-bottom: 0.5rem;">
-          Radius (in pixels/voxels) to dilate the ground-truth path mask before routing.
+          Radius (in pixels/voxels) to refine start/end points to lowest-cost nearby pixels.
+        </dd>
+
+        <dt><strong>is_binary&nbsp; : &nbsp;<em>bool</em> (default=False)</strong></dt>
+        <dd style="margin-left: 1rem; margin-bottom: 0.5rem;">
+          If True, operate on binary maps rather than distance maps.
+        </dd>
+
+        <dt><strong>distance_threshold&nbsp; : &nbsp;<em>float</em> (default=20)</strong></dt>
+        <dd style="margin-left: 1rem; margin-bottom: 0.5rem;">
+          Maximum value used for clipping ground-truth distance maps.
+        </dd>
+
+        <dt><strong>single_edge&nbsp; : &nbsp;<em>bool</em> (default=False)</strong></dt>
+        <dd style="margin-left: 1rem; margin-bottom: 0.5rem;">
+          If True, sample a single edge at a time; otherwise, sample a path.
         </dd>
       </dl>
 
       <!-- Returns -->
       <h2 class="title is-6 has-background-light mt-5" style="margin-bottom: -0.5rem; margin-top: 1rem; padding-left: 0.2rem; padding-top: 0.2rem; padding-bottom: 0.2rem;">Returns</h2>
       <dl style="margin-top: 1rem;">
-        <dt><strong>loss&nbsp; : &nbsp;<em>torch.Tensor</em></dt></strong>
+        <dt><strong>loss&nbsp; : &nbsp;<em>torch.Tensor</em></strong></dt>
         <dd style="margin-left: 1rem;">
           A scalar tensor representing the average CAPE loss over the batch.
         </dd>
@@ -405,9 +460,9 @@
       <h2 class="title is-6 has-background-light mt-5" style="margin-bottom: -0.5rem; margin-top: 1rem; padding-left: 0.2rem; padding-top: 0.2rem; padding-bottom: 0.2rem;">Notes</h2>
       <div class="notification is-info is-light" style="margin-top: 1rem;">
         <ul>
-          <li>Uses <code>skimage.graph.route_through_array</code> for shortest-path routing.</li>
-          <li>Constructs the skeleton graph with <code>graph_from_skeleton_2D</code> or <code>graph_from_skeleton_3D</code>.</li>
-          <li>Integrate CAPE with standard segmentation losses (e.g., MSE) for full training.</li>
+          <li>Predictions must be a <code>torch.Tensor</code> of shape <code>(batch, H, W)</code> for 2D or <code>(batch, D, H, W)</code> for 3D.</li>
+          <li>Ground truths can be a list of graphs in <code>networkx.Graph</code> format, or images (<code>np.ndarray</code> or <code>torch.Tensor</code>) of the same shape as prediction.
+          <!-- <li>Constructs the skeleton graph with <code>graph_from_skeleton_2D</code> or <code>graph_from_skeleton_3D</code>.</li> -->
         </ul>
       </div>
     </div>
