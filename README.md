@@ -58,9 +58,10 @@ python extract_graph.py npy_images
 python extract_graph.py brain_vols --dim 3 --out_dir brain_graphs
 ```
 **Options:**
---dim {2|3} choose 2-D or 3-D builder (default 2)
---threshold T binarise masks that are not already 0/1 (default 0.5)
---out_dir DIR folder for the resulting .gpickle graphs (default data_as_graph)
+
+- `--dim {2|3}` choose 2-D or 3-D builder (default 2)
+- `--threshold T` binarise masks that are not already 0/1 (default 0.5)
+- `--out_dir DIR` folder for the resulting .gpickle graphs (default data_as_graph)
 
 **Loading examples:**
 ```python
