@@ -341,7 +341,7 @@
 
     <!-- Video demo -->
     <figure class="has-text-centered">
-      <video autoplay muted loop playsinline style="width:40%; height:auto;">
+      <video autoplay muted loop playsinline style="width:50%; height:auto;">
         <source src="./static/videos/shifting.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -381,7 +381,7 @@
   </div>
 </section>
 
-  
+
 
 <section class="section" id="cape-reference">
   <div class="container is-max-desktop">
@@ -389,17 +389,13 @@
       <!-- Title and Signature -->
       <header class="card-header has-background-info-light">
         <p class="card-header-title has-text-info-dark is-size-3 has-text-weight-bold">
-          Usage
+          Usage&nbsp;<span style="color: rgba(115, 126, 131, 0.555);"> / CAPE</span>
         </p>
       </header>
-      <pre class="code-border"><code class="language-python">class CAPE(nn.Module):
-    def __init__(
-        self, window_size=128, three_dimensional=False, dilation_radius=10, shifting_radius=5, is_binary=False, 
-        distance_threshold=20, single_edge=False
-    )</code></pre>
+      <br>
 
       <!-- Short Description -->
-      <p>
+      <p style="text-align:justify;">
         The 
         <a href="https://github.com/NeuraVisionLab/CAPE/blob/main/loss.py" class="has-text-info has-text-weight-semibold">
           CAPE loss module
@@ -407,6 +403,16 @@
         compares shortest paths in predicted and ground-truth distance maps. It samples random node pairs
         from the ground-truth graph (or skeletonized mask) and penalizes deviations in path cost via Dijkstra’s algorithm.
       </p>
+
+      <br>
+
+      <pre class="code-border"><code class="language-python">class CAPE(nn.Module):
+    def __init__(
+        self, window_size=128, three_dimensional=False, dilation_radius=10, shifting_radius=5, is_binary=False, 
+        distance_threshold=20, single_edge=False
+    )</code></pre>
+
+      
 
       <!-- Parameters -->
       <h2 class="title is-6 has-background-light" style="margin-bottom: -0.5rem; margin-top: 1rem; padding-left: 0.2rem; padding-top: 0.2rem; padding-bottom: 0.2rem;">Parameters</h2>
@@ -468,6 +474,84 @@
     </div>
   </div>
 </section>
+
+
+
+
+
+<!-- ───────────────────── Graph Extraction & Export ───────────────────── -->
+<section class="section" id="graph-export">
+  <div class="container is-max-desktop">
+
+    <!-- <h2 class="title is-3 has-text-centered">Graph&nbsp;Extraction</h2> -->
+
+    
+
+
+    <div class="box">
+      <!-- Title and Signature -->
+      <header class="card-header has-background-info-light">
+        <p class="card-header-title has-text-info-dark is-size-3 has-text-weight-bold">
+          Usage&nbsp;<span style="color: rgba(115, 126, 131, 0.555);"> / Graph extraction</span>
+        </p>
+      </header>
+      <br>
+
+      <!-- overview -->
+    <p style="text-align:justify;">
+      The <code>utils</code> folder contains our implementation of two key functions—<code>graph_from_skeleton_2D</code> and
+      <code>graph_from_skeleton_3D</code> which CAPE uses. Each one turns an skeleton mask into an undirected
+      <code>networkx.Graph</code>. We also include helper functions for cropping these graphs into smaller
+      patches under the same directory. 
+    <br><br>
+      For large datasets it is faster to build graphs once and cache them rather than regenerate 
+      them at every training step. Our helper <code>extract_graph.py</code> wraps 
+       the <code>graph_from_skeleton_2D</code> and <code>graph_from_skeleton_3D</code> functions: 
+       each binary <code>.npy</code> mask is converted to a <code>networkx.Graph</code> 
+       and the result is saved as <code>.gpickle</code>. 
+    </p>
+
+    <!-- quick CLI -->
+    <p style="margin-top:1rem;"><strong>Saving examples:</strong></p>
+
+    <pre class="code-border"><code class="language-bash"># 2-D masks → graphs (saved to data_as_graphs)
+python extract_graph.py npy_images
+
+# 3-D volumes → graphs (custom output directory)
+python extract_graph.py brain_vols --dim 3 --out_dir brain_graphs
+    </code></pre>
+
+
+
+    <!-- key options -->
+    <div class="content" style="margin-top:1.2rem;">
+      <dl>
+        <p style="margin-top:1rem;"><strong>Options:</strong></p>
+        <dt><code>--dim&nbsp;{2&nbsp;|&nbsp;3}</code></dt>
+        <dd>Choose the 2-D or 3-D skeleton-to-graph routine&nbsp;·&nbsp;<em>default&nbsp;2</em></dd>
+        
+        <dt><code>--threshold&nbsp;&lt;T&gt;</code></dt>
+        <dd>Binarise masks whose values are not already 0/1&nbsp;·&nbsp;<em>default&nbsp;0.5</em></dd>
+
+        <dt><code>--out_dir&nbsp;&lt;DIR&gt;</code></dt>
+        <dd>Destination folder for the generated <code>.gpickle</code> files&nbsp;·&nbsp;<em>default&nbsp;&lt;input&gt;/graphs</em></dd>
+      </dl>
+    </div>
+
+    <!-- load example -->
+    <p style="margin-top:1rem;"><strong>Loading example:</strong></p>
+<pre class="code-border"><code class="language-python">from extract_graph import read_gpickle
+
+gpickle_path = "data_as_graph/example_graph.gpickle"
+G = read_gpickle(gpickle_path)
+</code></pre>
+  </div>
+
+  </div>
+</section>
+<!-- ────────────────────────────────────────────────────────────────────── -->
+
+
 
 <section class="section" id="results">
   <div class="container is-max-desktop">
