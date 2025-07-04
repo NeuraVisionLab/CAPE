@@ -35,7 +35,7 @@ pip install torch numpy scikit-image opencv-python scipy networkx
 
 ## Graph Extraction & Export
 
-The **`utils`** folder includes two key functions—`graph_from_skeleton_2D`
+The **`utils`** folder includes our implementation of two key functions—`graph_from_skeleton_2D`
 and `graph_from_skeleton_3D`—used by CAPE. Each function converts an skeleton mask into an undirected `networkx.Graph`. We also include helper functions for cropping these graphs into smaller patches under the same directory. 
 
 For large datasets it is faster to build the graphs once and cache them than to regenerate them at every training step. The script `extract_graph.py` automates this: it calls `graph_from_skeleton_2D` / `graph_from_skeleton_3D` on every binary `.npy` mask, converts the mask to a `networkx.Graph`, and stores the result as a `.gpickle` file.
