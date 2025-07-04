@@ -51,7 +51,7 @@ For large datasets it is faster to build the graphs once and cache them than to 
 
 **Saving examples:**
 ```bash
-# 2-D dataset → graphs (saved to npy_images/data_as_graph)
+# 2-D dataset → graphs (saved to data_as_graph)
 python extract_graph.py npy_images
 
 # 3-D dataset → graphs (saved to ./brain_graphs)
