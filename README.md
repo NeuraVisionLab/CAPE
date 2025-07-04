@@ -14,10 +14,19 @@ After extracting the ground truth graph, an iterative process selects pairs of v
 
 The loss requires several parameters for configuration which are described below:
 
-- **`window_size`**: Size of the window for processing image patches.
-- **`three_dimensional`**: CAPE works for both 2D and 3D. In order to work with 3D please set this parameter to be True. 
-- **`distance_threshold`**: The loss is designed to work with distance maps which are usually thresholded. This parameter indicates the value used to threshold the ground truth distance maps.
-- **`dilation_radius`**: Radius for dilating the ground truth path mask.
+
+- **`window_size (int):`** Size of the square patch (window) to process at a time.
+- **`three_dimensional (bool):`** If True, operate in 3D mode; otherwise, operate in 2D.
+- **`dilation_radius (int):`** Radius used to dilate ground-truth paths for masking.
+- **`shifting_radius (int):`** Radius for refining start/end points to lowest-cost nearby pixels.
+- **`is_binary (bool):`** If True, treat inputs as binary maps (invert predictions/ground truth).
+- **`distance_threshold (float):`** Maximum value used for clipping ground-truth distance maps.
+- **`single_edge (bool):`** If True, sample a single edge at a time; otherwise, sample a path.
+
+>**Notes**
+>Predictions must be a torch.Tensor of shape (batch, H, W) for 2D or (batch, D, H, W) for 3D.
+>Ground truths can be a list of graphs in networkx.Graph format, or images (np.ndarray or torch.Tensor) of the same shape as prediction.
+
 
 ## Installation
 
