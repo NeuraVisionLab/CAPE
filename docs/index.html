@@ -275,7 +275,7 @@
             In every iteration we sample a connected vertex pair and find its shortest path with Dijkstra’s algorithm; this path has zero cost because the label is perfectly connected. 
             The two vertices are then shifted to the lowest-cost pixels within a small window on the network’s predicted distance map, providing tolerance to minor mis-alignments. 
             Fixing those endpoints, we apply Dijkstra again on the prediction. 
-            The <code>L<sub>CAPE</sub></code> for this pair is the sum of squared distance values along that predicted path—close to zero when connectivity is correct and larger when a gap is present. 
+            The L<sub>CAPE</sub> for this pair is the sum of squared distance values along that predicted path—close to zero when connectivity is correct and larger when a gap is present. 
             Averaging such costs over many pairs and adding them to a standard pixel-wise loss (e.g.&nbsp;MSE) yields the total objective used for back-propagation.
           </p>
         </div>
@@ -370,11 +370,11 @@
     <div class="columns is-centered">
       <div class="column is-four-fifths">
         <figure class="has-text-centered">
-          <img src="./static/images/code.png" alt="Algorithm code snapshot" style="width:100%; max-width:900px;">
+          <img src="./static/images/code.png" alt="Algorithm code snapshot" style="width:90%; max-width:800px;">
         </figure>
         <p class="grey-box" style="text-align:justify;">
           <strong>Overall&nbsp;algorithm.</strong>
-          We iteratively samples vertex pairs until every edge of the ground-truth graph has been processed. For each pair the shortest path is extracted, the corresponding mask is generated and then it is dilated. The vertices are shifted on the prediction to compensate for the noisy center-line annotations. Then, shortest path within the masked region is computed.  The squared distance values accumulated along all predicted paths define <code>L<sub>CAPE</sub></code>, which is averaged over the sampled pairs. 
+          We iteratively samples vertex pairs until every edge of the ground-truth graph has been processed. For each pair the shortest path is extracted, the corresponding mask is generated and then it is dilated. The vertices are shifted on the prediction to compensate for the noisy center-line annotations. Then, shortest path within the masked region is computed.  The squared distance values accumulated along all predicted paths define L<sub>CAPE</sub>, which is averaged over the sampled pairs. 
         </p>
       </div>
     </div>
