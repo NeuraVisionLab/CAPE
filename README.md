@@ -49,6 +49,7 @@ and `graph_from_skeleton_3D`—used by CAPE. Each function converts an skeleton 
 
 For large datasets it is faster to build the graphs once and cache them than to regenerate them at every training step. The script `extract_graph.py` automates this: it calls `graph_from_skeleton_2D` / `graph_from_skeleton_3D` on every binary `.npy` mask, converts the mask to a `networkx.Graph`, and stores the result as a `.gpickle` file.
 
+**Saving examples:**
 ```bash
 # 2-D dataset → graphs (saved to npy_images/data_as_graph)
 python extract_graph.py npy_images
@@ -56,11 +57,12 @@ python extract_graph.py npy_images
 # 3-D dataset → graphs (saved to ./brain_graphs)
 python extract_graph.py brain_vols --dim 3 --out_dir brain_graphs
 ```
-Useful flags
-	•	--dim {2|3} choose 2-D or 3-D builder (default 2)
-	•	--threshold T binarise masks that are not already 0/1 (default 0.5)
-	•	--out_dir DIR folder for the resulting .gpickle graphs (default data_as_graph)
+**Options:**
+--dim {2|3} choose 2-D or 3-D builder (default 2)
+--threshold T binarise masks that are not already 0/1 (default 0.5)
+--out_dir DIR folder for the resulting .gpickle graphs (default data_as_graph)
 
+**Loading examples:**
 ```python
 from extract_graph import read_gpickle
 
