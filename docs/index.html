@@ -334,30 +334,49 @@
   </div>
 </section> -->
 
-
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Vertex&nbsp;Shifting</h2>
 
-    <!-- Video demo -->
-    <figure class="has-text-centered">
-      <video autoplay muted loop playsinline style="width:50%; height:auto;">
-        <source src="./static/videos/shifting.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </figure>
+    <!-- side-by-side media -->
+    <div class="columns is-variable is-5 is-multiline">
+      <!-- video -->
+      <div class="column is-half-desktop is-full-mobile has-text-centered">
+        <figure>
+          <video autoplay muted loop playsinline style="width:100%; height:auto;">
+            <source src="./static/videos/shifting.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <figcaption style="margin-top:0.5rem; font-weight:600;">
+            Shifted
+          </figcaption>
+        </figure>
+      </div>
+        <!-- video -->
+        <div class="column is-half-desktop is-full-mobile has-text-centered">
+          <figure>
+            <video autoplay muted loop playsinline style="width:100%; height:auto;">
+              <source src="./static/videos/no_shifting.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <figcaption style="margin-top:0.5rem; font-weight:600;">
+              Not shifted
+            </figcaption>
+          </figure>
+        </div>
 
-
-    <!-- Explanation -->
+    <!-- explanation text (unchanged) -->
     <p class="grey-box" style="text-align:justify;">
-      Directly mapping a graph vertex to the corresponding pixel in the predicted distance map \(\hat{y}\) can penalise the model for errors introduced by noisy center-line annotations.  
-      To mitigate this, each vertex \(v\) is relocated to the pixel within a radius of \(r = 5\) px that minimises \(\hat{y}(v)\).  
-      Formally, the shifted position is  
+      Directly mapping a graph vertex to the corresponding pixel in the predicted distance map
+      \(\hat{y}\) can penalise the model for errors introduced by noisy center-line annotations.
+      To mitigate this, each vertex \(v\) is relocated to the pixel within a radius of \(r = 5\) px
+      that minimises \(\hat{y}(v)\). Formally,
       \[
         v' \;=\; \arg\min_{u \in \mathcal{N}_r(v)} \hat{y}(u),
       \]
-      where \(\mathcal{N}_r(v)\) denotes the square (or cubic) neighbourhood of side length \(2r+1\) centerd at \(v\).  
-      This operation keeps the endpoints aligned with the predicted center line, providing a more stable starting point for the masked shortest-path search and yielding smoother gradients during optimisation.
+      where \(\mathcal{N}_r(v)\) is the \((2r{+}1)\times(2r{+}1)\) neighbourhood (or cubic analogue).
+      This keeps endpoints aligned with the predicted center line, giving a more stable start for
+      the masked shortest-path search and smoother gradients during optimisation.
     </p>
   </div>
 </section>
