@@ -1,1 +1,1 @@
-This is the project website for CAPE.
+This is the project page for CAPE.
