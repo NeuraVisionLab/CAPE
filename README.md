@@ -1,7 +1,7 @@
 # CAPE: Connectivity-Aware Path Enforcement Loss for Curvilinear Structure Delineation
 
 <p align="center">
-  <img src="./docs/static/images/FIG_NEW.png" alt="Project or Page Cover" width="99%" style="border-radius: 50px;"/>
+  <img src="./pipeline.png" alt="Project or Page Cover" width="99%" style="border-radius: 50px;"/>
 </p>
 
 CAPE addresses the challenge of preserving topological connectivity in curvilinear structure segmentation, a critical issue in biomedical imaging where conventional pixel-wise loss functions often fail to ensure global connectivity. By computing shortest paths in the pixel domain and comparing their costs, CAPE generates denser gradients along entire paths, enhancing connectivity enforcement while remaining suitable for gradient-based optimization. The implementation supports both 2D and 3D datasets and integrates seamlessly with deep learning frameworks like PyTorch.
