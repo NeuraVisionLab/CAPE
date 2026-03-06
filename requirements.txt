@@ -1,0 +1,13 @@
+# Core CAPE loss
+torch>=1.9
+numpy
+scikit-image
+opencv-python
+scipy
+networkx
+
+# CREMI 2D training
+PyYAML
+shapely
+scikit-learn
+tensorboard

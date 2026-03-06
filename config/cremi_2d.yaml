@@ -1,0 +1,58 @@
+# CREMI 2D training with MSE + CAPE loss
+# Required: images/, distances/  (<id>_image.npy, <id>_distance.npy)
+# Optional: graphs/ (<id>.gpickle) — set use_graphs: true to use graphs from extract_graph.py
+
+output_path: "logs/cremi_2d_cape"
+tensorboard: true
+
+root_dir: "/path/to/your/data"
+dataset_name: "CREMI"
+num_folds: 3
+fold_random_state: 42
+save_inds_path: "logs/cremi_splits"
+dist_thresh: 20
+crop_size: [512, 512]
+margin_size: [100, 100]
+multiplier_size: 8
+label: "distance"
+simple_augment: true
+
+# true = load graphs from graphs/ and pass to CAPE (no skeletonization at train time)
+# false = CAPE builds mask from distance map and skeletonizes at train time
+use_graphs: true
+
+# Network (2D UNet)
+m_channels: 32
+n_convs: 2
+n_levels: 3
+dropout: 0.1
+batch_norm: true
+upsampling: "bilinear"
+pooling: "max"
+in_channels: 1
+num_classes: 1
+
+# CAPE loss (same parameter names as loss.CAPE)
+window_size: 128
+three_dimensional: false
+dilation_radius: 10
+shifting_radius: 5
+is_binary: false
+distance_threshold: 20
+single_edge: false
+
+# Training
+lr: 0.001
+weight_decay: 0.0001
+aux_loss_weight: 0.0001
+training_initial_epoch_custom_loss: 0
+
+batch_size: 32
+num_epochs: 5000
+use_amp: false
+num_workers: 4
+
+print_every: 10
+valid_every: 500
+save_every: 500
+resume: "last"
