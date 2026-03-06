@@ -40,15 +40,15 @@ cd CAPE
 # Core (loss only)
 pip install torch numpy scikit-image opencv-python scipy networkx
 
-# Full training (CREMI 2D)
+# Full training (CREMI)
 pip install PyYAML shapely scikit-learn tensorboard
 ```
 
 
 
-## CREMI 2D training
+## CREMI dataset training
 
-A full training pipeline for the CREMI dataset in 2D (MSE + CAPE loss) is included.
+A full training pipeline for the CREMI dataset (MSE + CAPE loss) is included.
 
 ### Data
 
@@ -66,29 +66,39 @@ From the repository root:
 python train_cremi.py --config_file config/cremi_2d.yaml
 ```
 
-- `--resume last|best_loss|no` — which checkpoint to resume from.
-- `--fold 0 1 2` — which folds to train (default: all).
-- `--tensorboard` — log to TensorBoard (default: true).
-
-Checkpoints and logs go to `output_path` (see config), with one subfolder per fold.
 
 ## Graph extraction
 
-The **`utils`** folder provides `graph_from_skeleton_2D` and `graph_from_skeleton_3D`, which turn a skeleton mask into an undirected `networkx.Graph`. Helper functions for cropping graphs into patches are in the same folder.
+The **`utils`** folder includes our implementation of two key functions—`graph_from_skeleton_2D`
+and `graph_from_skeleton_3D`—used by CAPE. Each function converts an skeleton mask into an undirected `networkx.Graph`. We also include helper functions for cropping these graphs into smaller patches under the same directory. 
 
-**Script `extract_graph.py`** builds graphs from binary `.npy` masks and saves them as **.gpickle** files:
+For large datasets it is faster to build the graphs once and cache them than to regenerate them at every training step. The script `extract_graph.py` automates this: it calls `graph_from_skeleton_2D` / `graph_from_skeleton_3D` on every binary `.npy` mask, converts the mask to a `networkx.Graph`, and stores the result as a `.gpickle` file.
 
+**Saving examples:**
 ```bash
-# 2-D: read *.npy from folder, write .gpickle to data_as_graph
+# 2-D dataset → graphs (saved to data_as_graph)
 python extract_graph.py npy_images
 
-# 3-D
+# 3-D dataset → graphs (saved to ./brain_graphs)
 python extract_graph.py brain_vols --dim 3 --out_dir brain_graphs
 ```
+**Options:**
 
-Options: `--dim {2|3}`, `--threshold T`, `--out_dir DIR`.
+- `--dim {2|3}` choose 2-D or 3-D builder (default 2)
+- `--threshold T` binarise masks that are not already 0/1 (default 0.5)
+- `--out_dir DIR` folder for the resulting .gpickle graphs (default data_as_graph)
 
-**CREMI 2D training** reads the same **.gpickle** format. Put each graph in `graphs/<id>.gpickle` where `<id>` matches the image (e.g. `images/<id>_image.npy` → `graphs/<id>.gpickle`). Use the same `<id>` as in your image filenames when running `extract_graph.py` (e.g. masks named `<id>.npy` produce `<id>.gpickle`).
+**Loading examples:**
+```python
+from extract_graph import read_gpickle
+
+gpickle_path = "data_as_graph/example_graph.gpickle"
+G = read_gpickle(gpickle_path)
+```
+
+These cached graphs can be passed directly to the CAPE loss as ground-truth, avoiding graph construction inside the training loop.
+
+**CREMI dataset training** reads the same **.gpickle** format. Put each graph in `graphs/<id>.gpickle` where `<id>` matches the image (e.g. `images/<id>_image.npy` → `graphs/<id>.gpickle`). Use the same `<id>` as in your image filenames when running `extract_graph.py` (e.g. masks named `<id>.npy` produce `<id>.gpickle`).
 
 ## Datasets
 
