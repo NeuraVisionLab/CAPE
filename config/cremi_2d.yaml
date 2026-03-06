@@ -45,10 +45,10 @@ single_edge: false
 lr: 0.001
 weight_decay: 0.0001
 aux_loss_weight: 0.0001
-training_initial_epoch_custom_loss: 0
+training_initial_epoch_custom_loss: 4000
 
 batch_size: 32
-num_epochs: 5000
+num_epochs: 7000
 use_amp: false
 num_workers: 4
 
