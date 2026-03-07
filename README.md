@@ -27,6 +27,10 @@ The loss requires several parameters for configuration which are described below
 > Predictions must be a `torch.Tensor` of shape `(batch, H, W)` for 2D or `(batch, D, H, W)` for 3D. <br>
 > Ground truths can be a list of graphs in `networkx.Graph` format, or images (`np.ndarray` or `torch.Tensor`) of the same shape as prediction.
 
+## Training pipeline
+
+Refer to [this link]([https://github.com/NeuraVisionLab/CAPE/tree/main]) if you are interested in the full training pipeline. Please note that the CAPE loss is computed only after the model is already trained to some extent using the MSE loss.
+
 
 ## Installation
 
