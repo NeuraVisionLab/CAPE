@@ -29,7 +29,7 @@ The loss requires several parameters for configuration which are described below
 
 ## Training pipeline
 
-Refer to [this link]([https://github.com/NeuraVisionLab/CAPE/tree/main]) if you are interested in the full training pipeline. Please note that the CAPE loss is computed only after the model is already trained to some extent using a pixel-wise loss.
+Refer to [this link](https://github.com/NeuraVisionLab/CAPE/tree/main) if you are interested in the full training pipeline. Please note that the CAPE loss is computed only after the model is already trained to some extent using a pixel-wise loss.
 
 
 ## Installation
