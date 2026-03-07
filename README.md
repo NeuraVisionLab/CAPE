@@ -48,7 +48,7 @@ pip install PyYAML shapely scikit-learn tensorboard
 
 ## CREMI dataset training
 
-A full training pipeline for the CREMI dataset (MSE + CAPE loss) is included. Please note that the CAPE loss is computed only after the model is already trained to some extent using the MSE loss.
+A full training pipeline for the CREMI dataset (MSE + CAPE loss) is included. Please note that the CAPE loss is computed after the model is already trained to some extent using the MSE loss.
 
 ### Data
 
